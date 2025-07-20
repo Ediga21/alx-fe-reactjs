@@ -1,4 +1,3 @@
-// src/components/UserProfile.jsx
 import { useContext } from 'react';
 import UserContext from '../UserContext';
 
@@ -8,9 +7,8 @@ function UserProfile() {
   return (
     <div>
       <h2>User Profile</h2>
-      <p>Name: {userData.name}</p>
-      <p>Age: {userData.age}</p>
-      <p>Bio: {userData.bio}</p>
+      <p><strong>Name:</strong> {userData.name}</p>
+      <p><strong>Email:</strong> {userData.email}</p>
     </div>
   );
 }
