@@ -13,10 +13,8 @@ import UserContext from './UserContext';
 
 function App() {
   const userData = {
-    name: "Ediga Idu",
-    email: "iduedigabarnabas@gmail.com",
-    age: 30,
-    bio: "Loves hiking and photography"
+    name: "Jane Doe",
+    email: "jane.doe@example.com"
   };
 
   return (
@@ -35,7 +33,9 @@ function App() {
       <WelcomeMessage />
       <Header />
       <MainContent />
+
       <ProfilePage />
+
       <Counter />
       <Footer />
 
