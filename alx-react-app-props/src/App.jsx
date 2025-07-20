@@ -13,9 +13,9 @@ import UserContext from './UserContext';
 
 function App() {
   const userData = {
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
-    age: 25,
+    name: "Ediga Idu",
+    email: "iduedigabarnabas@gmail.com",
+    age: 30,
     bio: "Loves hiking and photography"
   };
 
