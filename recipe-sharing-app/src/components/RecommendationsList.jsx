@@ -1,7 +1,8 @@
+// src/components/RecommendationList.jsx
 import { useEffect } from 'react';
-import { useRecipeStore } from '../store/recipeStore';
+import { useRecipeStore } from './recipeStore';
 
-const RecommendationsList = () => {
+const RecommendationList = () => {
   const recommendations = useRecipeStore((state) => state.recommendations);
   const generateRecommendations = useRecipeStore((state) => state.generateRecommendations);
 
@@ -22,4 +23,4 @@ const RecommendationsList = () => {
   );
 };
 
-export default RecommendationsList;
+export default RecommendationList;
