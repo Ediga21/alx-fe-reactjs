@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.github.com/search/users';
+const BASE_URL = 'https://api.github.com/search/users?q=';
 
 export async function searchUsers({ username, location, minRepos }) {
   let query = username;
@@ -11,7 +11,10 @@ export async function searchUsers({ username, location, minRepos }) {
     query += `+repos:>=${minRepos}`;
   }
 
-  const response = await fetch(`${BASE_URL}?q=${encodeURIComponent(query)}`);
+  const url = `${BASE_URL}${encodeURIComponent(query)}`;
+
+  const response = await fetch(url);
   const data = await response.json();
+
   return data.items || [];
 }
