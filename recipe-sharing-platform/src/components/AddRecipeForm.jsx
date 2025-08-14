@@ -3,29 +3,28 @@ import { useState } from "react";
 export default function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState(""); // <-- new field
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-
-    // Validation
     if (!title.trim()) newErrors.title = "Title is required";
     if (!ingredients.trim() || ingredients.split(",").length < 2)
-      newErrors.ingredients = "At least 2 ingredients are required, separated by commas";
-    if (!instructions.trim()) newErrors.instructions = "Instructions are required";
+      newErrors.ingredients = "At least 2 ingredients required, separated by commas";
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required"; // <-- validation
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Submit logic (for now, just log)
-      console.log({ title, ingredients: ingredients.split(","), instructions: instructions.split("\n") });
-      
-      // Clear form
+      console.log({
+        title,
+        ingredients: ingredients.split(","),
+        steps: steps.split("\n"), // <-- store steps as array
+      });
       setTitle("");
       setIngredients("");
-      setInstructions("");
+      setSteps(""); // <-- reset field
       alert("Recipe submitted successfully!");
     }
   };
@@ -58,19 +57,18 @@ export default function AddRecipeForm() {
           {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
         </div>
 
-        {/* Instructions */}
+        {/* Steps */}
         <div>
           <label className="block mb-1 font-medium">Preparation Steps (one per line)</label>
           <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             rows={5}
             className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
           />
-          {errors.instructions && <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>}
+          {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
