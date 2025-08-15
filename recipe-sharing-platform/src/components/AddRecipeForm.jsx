@@ -3,28 +3,33 @@ import { useState } from "react";
 export default function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState(""); // <-- new field
+  const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // <-- separate validate function
+  const validate = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "Title is required";
     if (!ingredients.trim() || ingredients.split(",").length < 2)
       newErrors.ingredients = "At least 2 ingredients required, separated by commas";
-    if (!steps.trim()) newErrors.steps = "Preparation steps are required"; // <-- validation
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required";
+    return newErrors;
+  };
 
-    setErrors(newErrors);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    setErrors(validationErrors);
 
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(validationErrors).length === 0) {
       console.log({
         title,
         ingredients: ingredients.split(","),
-        steps: steps.split("\n"), // <-- store steps as array
+        steps: steps.split("\n"),
       });
       setTitle("");
       setIngredients("");
-      setSteps(""); // <-- reset field
+      setSteps("");
       alert("Recipe submitted successfully!");
     }
   };
