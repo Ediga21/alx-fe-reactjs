@@ -1,3 +1,5 @@
-export default function ProfileSettings() {
-  return <h3>Profile Settings Section</h3>;
+function ProfileSettings() {
+  return <h3>Here you can update your settings</h3>;
 }
+
+export default ProfileSettings;
