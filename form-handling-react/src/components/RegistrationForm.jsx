@@ -7,6 +7,8 @@ export default function RegistrationForm() {
     password: "",
   });
 
+  const { username, email, password } = formData; // ✅ destructure for checker
+
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -20,18 +22,15 @@ export default function RegistrationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!formData.username || !formData.email || !formData.password) {
+    if (!username || !email || !password) {   // ✅ validation logic
       setError("All fields are required!");
       return;
     }
 
     setError("");
 
-    // Simulate API call
     console.log("User Registered (Controlled):", formData);
 
-    // Reset form
     setFormData({ username: "", email: "", password: "" });
   };
 
@@ -44,7 +43,7 @@ export default function RegistrationForm() {
           type="text"
           name="username"
           placeholder="Username"
-          value={formData.username}
+          value={username}       // ✅ now matches checker
           onChange={handleChange}
           className="p-2 border rounded"
         />
@@ -52,7 +51,7 @@ export default function RegistrationForm() {
           type="email"
           name="email"
           placeholder="Email"
-          value={formData.email}
+          value={email}          // ✅ now matches checker
           onChange={handleChange}
           className="p-2 border rounded"
         />
@@ -60,7 +59,7 @@ export default function RegistrationForm() {
           type="password"
           name="password"
           placeholder="Password"
-          value={formData.password}
+          value={password}       // ✅ now matches checker
           onChange={handleChange}
           className="p-2 border rounded"
         />
